@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+
+<html class="wf-opensans-n4-active wf-opensanscondensed-n7-active wf-active" lang="en">
+
+<head>
+
+<style>
+
+textarea {
+
+	width: 557px;
+
+	height: 1135px;
+
+	margin-left: 0.4em;
+
+	text-align: justify;
+
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>Hindi Spell Checker</title>
+
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="">
+
+<meta name="description" content="Hindi Spell Checker">
+
+<link rel="stylesheet" href="Odia%20Spell%20Checker_files/base.css">
+
+<script src="Odia%20Spell%20Checker_files/jquery.js"></script>
+
+<script src="Odia%20Spell%20Checker_files/rlb.js"></script>
+
+<script src="Odia%20Spell%20Checker_files/jquery_002.js"></script>
+
+<script language="javascript" type="text/javascript" src="Odia%20Spell%20Checker_files/downloadFile_002.js"></script>
+
+<script language="javascript" type="text/javascript" src="Odia%20Spell%20Checker_files/uninon.js"></script>
+
+<script language="javascript" type="text/javascript">
+
+var wordList = [];
+
+</script>
+
+<script language="javascript" type="text/javascript" src="Odia%20Spell%20Checker_files/wordConvertion.js"></script>
+
+<script src="jquery.min.js"></script>
+
+<script type="text/javascript" src="Odia Spell Checker_files\jquery_auto.js"></script>
+
+
+
+<!--[if lt IE 9]>
+
+&nbsp;<!--Custom Sccript --><script src="Odia%20Spell%20Checker_files/res.js"></script>
+
+</head>
+
+<body onkeyup="onKeyUpBody(event)" onkeydown="addWordFromKeyboard(event)" onload="initApp()">
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top effect">
+
+  <div class="container">
+
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> </button>
+
+      <img border="0" src="Odia%20Spell%20Checker_files/spell_logo.png" width="267" height="50"><a href="http://expoodisha.com/FExchange/FExchange.htm/"> </a> </div>
+
+    <div class="navbar-collapse collapse" id="navbar">
+
+      <form class="navbar-form navbar-right" role="search" action="/search/">
+
+        <div class="input-group">
+
+          <input type="search" name="q" class="form-control" required placeholder="Search..." autocomplete="on" list="q">
+
+          <datalist id="q">
+
+            <option value="FExchange">
+
+            <option value="blog">
+
+            <option value="componets">
+
+            <option value="Contact"> 
+
+          </datalist>
+
+          <div class="input-group-btn">
+
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="active"><a href="https://expoodisha.com/Software/spellchecker/"><b><span class="glyphicon glyphicon-home"></span> Home <span class="sr-only">(current)</span></b></a></li>
+
+        <li class="dropdown"> <a href="https://expoodisha.com/Software/componets.htm" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-cog"></span> Componets</b></a></li>
+
+        <li class="dropdown"> <a href="https://expoodisha.com/Software/comment.htm"><b><span class="glyphicon glyphicon-file"></span> Comments</b></a></li>
+
+        <li class="dropdown"> <a href="https://expoodisha.com/Software/FExchange/FExchange.htm" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b><span class="glyphicon glyphicon-th-large"></span> Font Exchange</b></a></li>
+
+        <li><a href="https://expoodisha.com/Software/contactform.php"><b><span class="glyphicon glyphicon-envelope"></span> Contact</b></a></li>
+
+      </ul>
+
+    </div>
+
+  </div>
+
+</nav>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-lg-8" style="width: 554px; height: 164px">
+
+      <form name="frm">
+
+        <div class="form-group">
+
+          <div class="panel panel-info">
+
+            <div class="panel-heading"> <b>Font Treatment&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+
+              Auto Correct
+
+              <input type="checkbox" name="C1" value="ON" checked>
+
+              </b></div>
+
+            <p>
+
+              <textarea class="form-control" rows="16" required="" placeholder="Insert Content Here..." id="uInput" name="S3" cols="56" style="font-family: Verdana; font-size: 20; text-align: justify"></textarea>
+
+            </p>
+
+          </div>
+
+          <div class="row">
+
+            <div id="TextBoxDiv1">
+
+              <label class="col-lg-2 control-label">Change All:</label>
+
+              <div class="col-lg-4">
+
+                <input class="form-control input-sm" placeholder="Old Word" id="findbox1" name="T1" size="20">
+
+              </div>
+
+              <label class="col-lg-2 control-label">&gt;&nbsp; </label>
+
+              <div class="col-lg-4">
+
+                <input class="form-control input-sm" placeholder="New Word" id="replacebox1" name="T1" size="20">
+
+              </div>
+
+            </div>
+
+            <p>&nbsp;</p>
+
+            <div class="col-lg-4">
+
+              <button type="button" name="Remove-Line-Breaks" id="fnrbtn" class="btn btn-success btn-block" onclick="javascript:removeBreaks(), clearApplication()" style="width: 60; height: 25"> Treat ▲</button>
+
+              <br>
+
+            </div>
+
+            <div class="col-lg-4">
+
+              <button type="button" class="btn btn-danger btn-block" onclick="document.querySelector('#editor').innerHTML = document.querySelector('#uInput').value, checkSpell()" name="perform" style="width: 90; height: 35">Check Spell</button>
+
+              <br>
+
+            </div>
+
+            <div class="col-lg-4">
+
+              <button type="reset" id="reset" class="btn btn-default btn-block" onclick="clearFormat()"> Reset /FC►◄</button>
+
+              <br>
+
+            </div>
+
+          </div>
+
+          <div class="container1">
+
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+
+                <div class="col-xs-6">
+
+                  <div class="form-group"> &nbsp;<font size="4" color="#800000" face="Verdana">Offensive Word <br>
+
+                      Detector</font><br>
+
+                      &nbsp;<font color="#FFFFFF">
+
+                      <input class="form-control input-sm" id="keyword" name="keyword" value="ବାଣ୍ଡ ବିଆ ପେଳ କୁରୁଣ୍ଡ ସେଣ୍ଟି ଶଳା ଘଇତା ଗିହାଁ ଗେହିଁ ଘିଆଁ ଗାଣ୍ଡି ଯୋନି ବେଧ ବେଧେଇ ଛୋଡ଼ ପେନ୍ଦପେନ୍ଦୁଆ ଛୋଡ ପେନ୍ଦ ପେନ୍ଦୁଆ ଘିଅଁ ଗେହି" placeholder="(empty)" size="20" style="color: #FFFFFF; visibility: hidden" type="password">
+
+                      </font> 
+
+                  </div>
+
+                  &nbsp;</div>
+
+                <div class="col-xs-6">
+
+                  <div class="form-group">
+
+                    <label for="accuracy" style="display: block">Accuracy:</label>
+
+                    <select class="form-control input-sm1" name="accuracy" id="accuracy" size="1">
+
+                      <option value="exactly">exactly</option>
+
+                      <option value="partially" selected="selected">partially</option>
+
+                      <option value="complementary">complementary</option>
+
+                    </select>
+
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <button type="button" class="btn btn-default btn-sm" name="perform" onclick="checkSpell()"> Detect</button>
+
+                  </div>
+
+                </div>
+
+                <p>&nbsp;</p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          &nbsp;
+
+          <div class="row">
+
+            <div class="col-lg-12"><font size="1">
+
+              <input id="nospaces" name="nospaces1" value="V1" nochecked="" type="radio">
+
+              </font><font size="2"> Replace whitespaces with a single space but delete all 
+
+              tabs </font><font size="1">
+
+              <input id="notabs" name="nospaces" value="V1" checked="checked" type="radio">
+
+              <font size="2"> both multiple whitespaces and tabs with a single space</font></font><font size="2">&nbsp; 
+
+              <script type="text/javascript" src="Odia%20Spell%20Checker_files/esr.js"></script> 
+
+              <script type="text/javascript" src="Odia%20Spell%20Checker_files/esr-1.js"></script> 
+
+<script type="text/javascript">
+
+WebFontConfig = {
+
+  google: {
+
+    families: ['Open Sans','Open Sans Condensed:700']
+
+  }
+
+};
+
+  (function() {
+
+    var wf = document.createElement('script');
+
+    wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+
+    wf.type = 'text/javascript';
+
+    wf.async = 'true';
+
+    var s = document.getElementsByTagName('script')[0];
+
+    s.parentNode.insertBefore(wf, s);
+
+  })(); </script><script type="text/javascript">
+
+var tf = document.createElement('link');
+
+tf.rel = 'stylesheet';
+
+tf.href = '';
+
+tf.type = 'text/css';
+
+var godefer = document.getElementsByTagName('link')[0];
+
+godefer.parentNode.insertBefore(tf, godefer);
+
+</script>
+
+
+              </font>
+
+              <p><font size="2">
+
+                <input id="paragraphs" name="paragraphs" value="yes" type="radio">
+
+                Remove line breaks only
+
+                <input id="noparagraphs" name="paragraphs" value="no" checked="checked" type="radio">
+
+                Remove line breaks and paragraph breaks</font></p>
+
+              <p>&nbsp;</p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div id="TextBoxesGroup" class="form-horizontal">
+
+          <div id="TextBoxDiv2" class="form-group">
+
+            <label class="col-lg-2 control-label">Wrd 2 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #2" id="findbox2" name="T2" size="20">
+
+            </div>
+
+            <label class="col-lg-2 control-label">Exc 2 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #2" id="replacebox2" name="T2" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv3" class="form-group">
+
+            <label class="col-lg-2 control-label">Wrd 3 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #3" id="findbox3" name="T3" size="20" value="।" type="password">
+
+            </div>
+
+            <label class="col-lg-2 control-label">Exc 3 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #3" id="replacebox3" name="T3" size="20" value="। " type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv4" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label"> Wrd 4 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #4" id="findbox4" name="T4" size="20" value="ଡ଼." type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label"> Exc 4 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #4" id="replacebox4" name="T4" size="20" value="ଡ." type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv5" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 5 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #5" id="findbox5" value="ଡ଼ାଃ" name="T5" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 5 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #5" id="replacebox5" value="ଡ." name="T5" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv6" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 6 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #6" id="findbox6" value="ପୀଡା" name="T6" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 6 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #6" id="replacebox6" value="ପୀଡା" name="T6" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv7" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 7 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #7" id="findbox7" value="," name="T7" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 7 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #7" id="replacebox7" value=", " name="T7" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv8" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 8 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #8" id="findbox8" value="." name="T8" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 8 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #8" id="replacebox8" value=". " name="T8" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv9" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 9 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #9" id="findbox9" value="ପଢା" name="T9" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 9 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #9" id="replacebox9" value="ପଢ଼ା" name="T9" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv10" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 10 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #10" id="findbox10" value="ଢ଼େ" name="T10" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 10 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #10" id="replacebox10" value="ଢେ" name="T10" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv11" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 11 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #11" id="findbox11" name="T11" size="20" value="ପଡି" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 11 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #11" id="replacebox11" name="T11" size="20" value="ପଡ଼ି" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv12" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 12 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #12" id="findbox12" name="T12" value="ଡବ୍ଲୁ" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 12 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #12" id="replacebox12" name="T12" value="ଡବ୍‌ଲ୍ୟୁ" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv13" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 13 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #13" id="findbox13" name="T13" value="ପଢି" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 13 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #13" id="replacebox13" name="T13" value="ପଢ଼ି" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv14" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 14 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #14" id="findbox14" name="T14" value="ବାଙ୍ଗାଲୋର" size="20" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 14 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #14" id="replacebox14" name="T14" value="ବେଙ୍ଗାଲୁରୁ" size="20" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv15" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 15 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #15" id="findbox15" name="T15" size="20" value="ଡ଼କା" style="color: #FFFFFF" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 15 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #15" id="replacebox15" name="T15" size="20" value="ଡକା" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv20" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 20 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #20" id="findbox20" type="password" name="T20" value="ଢ଼ଙ୍ଗ" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 20 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #20" id="replacebox20" type="password" name="T20" value="ଢଙ୍ଗ" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv21" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 21 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #21" id="findbox21" type="password" name="T21" value="(" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 21 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #21" id="replacebox21" type="password" name="T21" value=" (" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv22" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 22 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #22" id="findbox22" type="password" name="T22" size="20" value="ଇନ୍‌ସ୍‌">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 22 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #22" id="replacebox22" type="password" name="T22" size="20" value="ଇନ୍ସ">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv23" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 23 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #23" id="findbox23" type="password" name="T23" value="ଛଡା" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 23 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #23" id="replacebox23" type="password" name="T23" value="ଛଡ଼ା" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv24" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 24 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #24" id="findbox24" type="password" name="T24" value="ଲୋଡା" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 24 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #24" id="replacebox24" type="password" name="T24" value="ଲୋଡ଼ା" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv25" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 25 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #25" id="findbox25" type="password" name="T25" value="ଭିଡ" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 25 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #25" id="replacebox25" type="password" name="T25" value="ଭିଡ଼" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv26" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 26 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #26" id="findbox26" type="password" name="T26" value="ଡ଼ରି" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 26 :</label>
+
+            <div class="col-lg-4">
+
+
+
+              <input class="form-control input-sm" placeholder="Replace #26" id="replacebox26" type="password" name="T26" value="ଡରି" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv27" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 27 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #27" id="findbox27" type="password" name="T27" value="ଯୋଡି" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 27 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #27" id="replacebox27" type="password" name="T27" value="ଯୋଡ଼ି" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv28" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 28 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #28" id="findbox28" type="password" name="T28" value="ପଡା" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 28 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #28" id="replacebox28" type="password" name="T28" value="ପଡ଼ା" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv29" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 29 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #29" id="findbox29" type="password" name="T29" value="ରେଡ଼କ୍ରସ୍‍ " size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 29 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #29" id="replacebox29" type="password" name="T29" value=" ରେଡକ୍ରସ " size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv30" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 30 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #30" id="findbox30" type="password" name="T30" size="30">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 30 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #30" id="replacebox30" type="password" name="T30" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv31" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 31 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #31" id="findbox31" type="password" name="T31" value="ପଡ" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 31 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #31" id="replacebox31" type="password" name="T31" value="ପଡ଼" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv32" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 32 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #32" id="findbox32" type="password" name="T32" value="ମିଲ" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 32 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #32" id="replacebox32" type="password" name="T32" value="ମିଲ୍‌" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv33" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 33 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #33" id="findbox33" type="password" name="T33" value="ଦୃଢ" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 33 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #33" id="replacebox33" type="password" name="T33" value="ଦୃଢ଼" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv34" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 34 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #34" id="findbox34" type="password" name="T34" size="20" value="କ୍ରୀଡା">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 34 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #34" id="replacebox34" type="password" name="T34" size="20" value="କ୍ରୀଡ଼ା">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv35" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 35 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #35" id="findbox35" type="password" name="T35" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 35 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #35" id="replacebox35" type="password" name="T35" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv36" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 36 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #36" id="findbox36" type="password" name="T36" size="20" value="ମାଡି">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 36 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #36" id="replacebox36" type="password" name="T36" size="20" value="ମାଡ଼ି">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv37" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 37 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #37" id="findbox37" type="password" name="T37" size="20" value="ବଢି">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 37 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #37" id="replacebox37" type="password" name="T37" size="20" value="ବଢ଼ି">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv38" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 38 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #38" id="findbox38" type="password" name="T38" value="ବଢା" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 38 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #38" id="replacebox38" type="password" name="T38" value="ବଢ଼ା" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv39" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 39 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #39" id="findbox39" type="password" name="T39" size="20" value="ଡ଼ର">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 39 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #39" id="replacebox39" type="password" name="T39" value="ଡର" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv40" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 40 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #40" id="findbox40" type="password" name="T40" value=" ‌" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 40 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #40" id="replacebox40" type="password" name="T40" value=" " size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv41" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 41 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #41" id="findbox41" type="password" name="T41" size="20" value="ଡ଼୍ରା">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 41 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #41" id="replacebox41" type="password" name="T41" value="ଡ୍ରା" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv42" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 42 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #42" id="findbox42" type="password" name="T42" size="20" value="ଅଁା">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 42 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #42" id="replacebox42" type="password" name="T42" size="20" value="ଆଁ ">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv43" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 43 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #43" id="findbox43" type="password" name="T43" value=" ।" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 43 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #43" id="replacebox43" type="password" name="T43" value="।" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv44" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 44 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #44" id="findbox44" type="password" name="T44" value="ୋ" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 44 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #44" id="replacebox44" type="password" name="T44" value="ୋ" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv45" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 45 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #45" id="findbox45" type="password" name="T45" size="20" value="ୌ">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 45 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #45" id="replacebox45" type="password" name="T45" size="20" value="ୌ">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv46" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 46 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #46" id="findbox46" type="password" name="T46" size="20" value="ୈ">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 46 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #46" id="replacebox46" type="password" name="T46" size="20" value="ୈ">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv47" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 47 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #47" id="findbox47" type="password" name="T47" value="େ" size="20">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 47 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #47" id="replacebox47" type="password" name="T47" value="େ" size="20">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv48" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 48 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #48" id="findbox48" type="password" name="T48" size="20" value="ଅା">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 48 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #48" id="replacebox48" type="password" name="T48" size="20" value="ଆ">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv49" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 49 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #49" id="findbox49" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 49 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #49" id="replacebox49" type="password">
+
+            </div>
+
+          </div>
+
+          <div id="TextBoxDiv50" class="form-group">
+
+            <label for="name" class="col-lg-2 control-label">Wrd 50 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Find #50" id="findbox50" type="password">
+
+            </div>
+
+            <label for="name" class="col-lg-2 control-label">Exc 50 :</label>
+
+            <div class="col-lg-4">
+
+              <input class="form-control input-sm" placeholder="Replace #50" id="replacebox50" type="password">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+
+            <button type="button" id="addbtn" class="btn btn-success btn-block"><span class="glyphicon glyphicon-plus"></span> Add Element</button>
+
+            <br>
+
+          </div>
+
+          <div class="col-lg-4">
+
+            <button type="button" id="repbtn" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-remove"></span> Remove Element</button>
+
+            <br>
+
+          </div>
+
+          <div class="col-lg-4">
+
+            <button type="reset" id="reset" class="btn btn-default btn-block"><span class="glyphicon glyphicon-repeat"></span> Reset</button>
+
+          </div>
+
+        </div>
+
+        &nbsp;&nbsp;
+
+      </form>
+
+    </div>
+
+    <div class="col-lg-4" style="width: 600px; height: 164px"> 
+
+      <script>$(document).ready(function(){var t="";return $.getJSON(""+t,function(n){var o=n[t].share.share_count,e=n[t].share.comment_count;$("").html(o),$("").html(e)}),$.getJSON("https://api.pinterest.com/v1/urls/count.json?callback=?",{url:t}).done(function(t){$("#pinterest_pins").html(t.count)}),$.getJSON("https://www.linkedin.com/countserv/count/share?format=jsonp&callback=?",{url:t}).done(function(t){$("#linkedin_shares").html(t.count)}),!1});</script>
+
+      <div class="text-center centered">
+
+        <div class="panel panel-info">
+
+          <div class="panel-heading">
+
+            <div id="" style="width: 540px; height: 20px; background-color:">
+
+              <p style="text-align: left">&nbsp;<b>SpellCheck Area </b>&nbsp; <span title="Press control button while clicking the word if right side charactors are correct. Left suggestions will be offered." style="cursor:pointer;"> <font color="#FF0000">|</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Option </b>&nbsp;&nbsp; </span>
+
+                <select name="language" id="language" onchange="changeLanguage(this)" class="button button1">
+
+                  <option value="unicode" selected="selected">Unicode</option>
+
+                  <option value="Standard"> </option>
+
+                </select>
+
+                <span title="" style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                <input name="leftCheck" id="leftCheck" checked="checked" type="checkbox">
+
+                First Word </span>
+
+                <input name="rightCheck" id="rightCheck" checked="checked" type="checkbox">
+
+                Last Word<span id="downloadLink" style="float:right;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+            </div>
+
+          </div>
+
+          <div class="panel-body context" onmousedown="editrOnMouseUp(event)" name="editor" onpaste="pasteText()" id="editor" style="text-align: justify; font-family: DataSoft_Uniweb; display: inline-block;" contenteditable="true"><span onclick="displayWordList('',this)" class="invalidWord"></span> </div>
+
+        </div>
+
+      </div>
+
+      <button id="copy" style="width:93px;font-size:13pt;padding:2px; border:1px solid green; height:31px"onclick="javascript:removeBreaks(),checkSpell()"> «Recheck</button>
+
+      <h4 id="counteroutput" align="right"style="width:323px" > Words: <span class="outputval">0</span> Chars: <span class="outputval"> 0</span></h4>
+
+      <p>&nbsp;</p>
+
+      <div class="alert" style="background-color: #E6E6FA">
+
+        <div style="background-color: #FF9900"> <strong><font size="3" face="Verdana" color="#FFFFFF"> &nbsp;Help Desk</font></strong><font color="#FFFFFF" size="3" face="Verdana">:&nbsp;</font></div>
+
+        <hr style="background-color: #000000" color="#000000">
+
+        <b>Treat :</b> Treatment extra space and Paragraph lines to find 
+
+        appropriate word from database.<br>
+
+        <b>Spell Check:</b> Checking text matter and suggest correct 
+
+        word from database.<br>
+
+        <b>Wrong Word: </b>After pressing Spell Check Button the wrong 
+
+        word is highlight [<font color="#FF0000">Red color</font>]. mouse over the 
+
+        wrong word and click correct word in 
+
+        suggestion box.
+
+        <p>&nbsp;</p>
+
+        <p><font size="2" face="Verdana" color="#008080">• </font><font size="2" color="#008080"><b>Option Box</b></font></p>
+
+        <span title="">
+
+        <hr>
+
+        <input name="leftCheck1" id="leftCheck1" checked="checked" type="checkbox">
+
+        <font face="Verdana"><b>First Word</b></font></span><font face="Verdana"><b>:</b> Press control button while clicking the word if right side 
+
+        characters are correct. Left suggestions will be offered.<br>
+
+        </font>
+
+        <input name="rightCheck1" id="rightCheck1" checked="checked" type="checkbox">
+
+        <font face="Verdana"><b>Last Word: </b>Press shift button while 
+
+        clicking the word if left side characters are correct. Right 
+
+        suggestions will be offered.</font>
+
+        <p></p>
+
+        <p>&nbsp;</p>
+
+        <p><font size="2" color="#008080"><font face="Verdana"> • </font><b><font face="Verdana">Showing Color Word</font></b></font></p>
+
+        <p> </p>
+
+        <hr style="background-color: #778899">
+
+        <font face="Verdana">1. <b><font color="#FF0000">Red :</font></b> Misspell or unknown Word</font>
+
+        <p></p>
+
+        <p><font face="Verdana">2. <b> Black :</b> Offensive Word </font> </p>
+
+        <p>&nbsp;</p>
+
+        <font size="2" face="Verdana" color="#008080">•</font><b><font size="2" face="Verdana" color="#008080"> Check Offensive Word</font>
+
+        <hr>
+
+        </b>
+
+        <p></p>
+
+        <p><font face="Verdana"> On the Spell Check mode you can press <b><u>detect</u></b> button on the Offensive Words Detector Panel.</font></p>
+
+        <p>&nbsp;</p>
+
+      </div>
+
+      <p>&nbsp;</p>
+
+      <div> &nbsp;</div>
+
+      <p>&nbsp;</p>
+
+      <p>&nbsp;</p>
+
+      <p>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="description" content=" Copy-paste and click check spell button. Optional words are provided for you to correct.">
+
+        <script language="javascript" type="text/javascript" src="Odia%20Spell%20Checker_files/downloadFile.js"></script> 
+
+        <script language="javascript" type="text/javascript" src="Odia%20Spell%20Checker_files/uninon_002.js"></script> 
+
+        <script language="javascript" type="text/javascript">
+
+var wordList = [];
+
+</script> 
+
+        <script language="javascript" type="text/javascript" src="dic.htm"></script> 
+
+        <script language="javascript" type="text/javascript" src="Odia%20Spell%20Checker_files/wordConvertion_002.js"></script>
+
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+&nbsp;<script>
+
+;(function(){
+
+	var wordcounter = document.getElementById('uInput')
+
+	var counteroutput = document.getElementById('counteroutput')
+
+	var counteroutputFoot = document.getElementById('counteroutput-foot')
+
+	var words, chars
+
+
+
+	function countemwords(){
+
+		words = (wordcounter.value == '')? 0 : wordcounter.value.split(' ').length
+
+		chars = wordcounter.value.length
+
+		counteroutput.innerHTML = 'Words: <span class="outputval">' + words + '</span> Chars: <span class="outputval">' + chars + '</span>'
+
+		counteroutputFoot.innerHTML = '<b>Words: </b>' + words + '<b>Chars: </b>' + chars
+
+	}
+
+
+
+	wordcounter.addEventListener('input', function(e){
+
+		countemwords()
+
+	}, false)
+
+
+
+
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+
+		countemwords()
+
+  }, false)
+
+
+
+  window.addEventListener("load", function(event) {
+
+		countemwords()
+
+  }, false)
+
+	
+
+})()
+
+
+
+</script> 
+
+<script src="Odia%20Spell%20Checker_files/jquery-2.js"></script> 
+
+<script src="Odia%20Spell%20Checker_files/jquery_003.js"></script> 
+
+<script>$(function() {
+
+  var $context = $(".context");
+
+  var $form = $("form");
+
+  var $button = $form.find("button[name='perform']");
+
+  var $input = $form.find("input[name='keyword']");
+
+
+
+  $button.on("click.perform", function() {
+
+
+
+    // Determine search term
+
+    var searchTerm = $input.val();
+
+
+
+    // Determine options
+
+    var options = {};
+
+    var values = $form.serializeArray();
+
+    /* Because serializeArray() ignores unset checkboxes */
+
+    values = values.concat(
+
+      $form.find("input[type='checkbox']:not(:checked)").map(
+
+        function() {
+
+          return {
+
+            "name": this.name,
+
+            "value": "false"
+
+          }
+
+        }).get()
+
+    );
+
+    $.each(values, function(i, opt){
+
+      var key = opt.name;
+
+      var val = opt.value;
+
+      if(key === "keyword" || !val){
+
+        return;
+
+      }
+
+      if(val === "false"){
+
+        val = false;
+
+      } else if(val === "true"){
+
+        val = true;
+
+      }
+
+      options[key] = val;
+
+    });
+
+
+
+    // Remove old highlights and highlight
+
+    // new search term afterwards
+
+    $context.unmark();
+
+    $context.mark(searchTerm, options);
+
+	document.getElementById('editor').style.display='inline-block';
+
+  });
+
+  $button.trigger("click.perform");
+
+});
+
+//# sourceURL=pen.js
+
+</script>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top" style="display: block;">Top</button>
+
+<script>
+
+// When the user scrolls down 20px from the top of the document, show the button
+
+window.onscroll = function() {scrollFunction()};
+
+
+
+function scrollFunction() {
+
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+
+        document.getElementById("myBtn").style.display = "block";
+
+    } else {
+
+        document.getElementById("myBtn").style.display = "none";
+
+    }
+
+}
+
+
+
+// When the user clicks on the button, scroll to the top of the document
+
+function topFunction() {
+
+    document.body.scrollTop = 0;
+
+    document.documentElement.scrollTop = 0;
+
+}
+
+</script>
+
+<script type="text/javascript">
+
+
+
+
+
+    $(window).load(function(){
+
+      
+
+$("#copy").click(function() {
+
+    $("#uInput").val($("#editor").text());
+
+});
+
+
+
+    });
+
+
+
+</script> 
+
+
+<script type="text/javascript">
+
+function clearFields() {
+
+    document.getElementById("findbox1").value=""
+
+    document.getElementById("replacebox1").value=""
+
+}
+
+</script>
+
+</body>
+
+</html>
+
